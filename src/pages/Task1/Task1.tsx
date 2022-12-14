@@ -12,7 +12,7 @@ import { $api } from "../../api/config";
 
 const mocked_rows: Task1Rows[] = [
   {
-    id: 1,
+    // id: 1,
     cutomerId: 1,
     actualDaysInRent: 32,
     expectedEndPeriod: new Date().toDateString(),
@@ -34,7 +34,7 @@ const Task1: React.FC = () => {
   return (
     <Box sx={{ height: 400, width: "100%" }}>
       <DataGrid
-        rows={mocked_rows}
+        rows={data?.map((row) => ({ id: row.cutomerId, ...row })) ?? []}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}

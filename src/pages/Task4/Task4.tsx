@@ -1,11 +1,11 @@
 import React, { ChangeEvent, useState } from "react";
 
-import { Dropdown } from "components/Dropdown/Dropdown";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { Box, Button, TextField } from "@mui/material";
-import { DatePicker } from "../../components/DatePicker/DatePicker";
-import { Snackbar, SnackbarProps } from "../../components/Snackbar/Snackbar";
-import { $api } from "../../api/config";
+
+import { Dropdown } from "components/Dropdown/Dropdown";
+import { DatePicker } from "components/DatePicker/DatePicker";
+import { Snackbar, SnackbarProps } from "components/Snackbar/Snackbar";
 
 const mocked_cars = [
   { carId: 1, mark: "BMW" },
@@ -53,10 +53,6 @@ const Task4: React.FC = () => {
         open: true,
       });
     }
-  };
-
-  const test = () => {
-    $api.post("/");
   };
 
   return (

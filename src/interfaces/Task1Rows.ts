@@ -1,5 +1,4 @@
 export interface Task1Rows {
-  id: number;
   cutomerId: number;
   reservationDate: string;
   expectedEndPeriod: string;
