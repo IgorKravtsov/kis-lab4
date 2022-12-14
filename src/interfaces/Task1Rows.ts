@@ -1,6 +1,7 @@
 export interface Task1Rows {
-  cutomerId: number;
-  reservationDate: string;
+  orderid: number;
+  customerid: number;
+  reservationdate: string;
   expectedEndPeriod: string;
   status: string;
   actualDaysInRent: number;

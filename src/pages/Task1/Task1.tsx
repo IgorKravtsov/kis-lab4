@@ -10,17 +10,17 @@ import { useGrid } from "./useGrid";
 import { Loader } from "../../components/Loader/Loader";
 import { $api } from "../../api/config";
 
-const mocked_rows: Task1Rows[] = [
-  {
-    // id: 1,
-    cutomerId: 1,
-    actualDaysInRent: 32,
-    expectedEndPeriod: new Date().toDateString(),
-    reservationDate: new Date().toDateString(),
-    status: "Not returned",
-    finalPrice: 2000,
-  },
-];
+// const mocked_rows: Task1Rows[] = [
+//   {
+//     // id: 1,
+//     cutomerId: 1,
+//     actualDaysInRent: 32,
+//     expectedEndPeriod: new Date().toDateString(),
+//     reservationDate: new Date().toDateString(),
+//     status: "Not returned",
+//     finalPrice: 2000,
+//   },
+// ];
 
 const Task1: React.FC = () => {
   const columns = useGrid();
@@ -30,11 +30,11 @@ const Task1: React.FC = () => {
   //   return <Loader />;
   // }
   console.log("===data===", data);
-
   return (
+    
     <Box sx={{ height: 400, width: "100%" }}>
       <DataGrid
-        rows={data?.map((row) => ({ id: row.cutomerId, ...row })) ?? []}
+        rows={data?.map((row) => ({ id: row.orderid, ...row })) ?? []}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}

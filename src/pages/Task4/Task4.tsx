@@ -1,4 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
+import useSWR from "swr";
+
 
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { Box, Button, TextField } from "@mui/material";
@@ -6,6 +8,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { Dropdown } from "components/Dropdown/Dropdown";
 import { DatePicker } from "components/DatePicker/DatePicker";
 import { Snackbar, SnackbarProps } from "components/Snackbar/Snackbar";
+import { api } from "api/api";
 
 const mocked_cars = [
   { carId: 1, mark: "BMW" },
@@ -18,6 +21,9 @@ const mocked_customers = [
 ];
 
 const Task4: React.FC = () => {
+  const {data: cars} = useSWR('car/all')
+  const {data: customers} = useSWR('customer/all')
+
   const [carId, setCarId] = useState(0);
   const [customerId, setCustomerId] = useState(0);
   const [reservationDate, setReservationDate] = useState<Date | null>(
@@ -29,6 +35,9 @@ const Task4: React.FC = () => {
     open: false,
     message: "",
   });
+
+  console.log('cars', cars)
+  console.log('customers', customers)
 
   const handleUpdatePeriod = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -45,14 +54,17 @@ const Task4: React.FC = () => {
     setPeriod(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!carId || !customerId || !reservationDate || !period) {
       setSnackbarState({
         severity: "error",
         message: "Not all fields are selected",
         open: true,
       });
+      return;
     }
+    const data = await api.reserveCar({carId, customerId, periodInDays: Number(period ?? 0), reservationDate})
+    console.log(data)
   };
 
   return (
@@ -60,18 +72,18 @@ const Task4: React.FC = () => {
       <Grid2 container justifyContent={"space-around"}>
         <Dropdown
           value={carId}
-          rows={mocked_cars}
+          rows={cars ?? []}
           onChange={(e) => setCarId(e.target.value)}
           label={"Car"}
-          displayKey={"carId"}
+          displayKey={"carid"}
           displayValue={"mark"}
         />
         <Dropdown
           value={customerId}
-          rows={mocked_customers}
+          rows={customers ?? []}
           onChange={(e) => setCustomerId(e.target.value)}
           label={"Customer"}
-          displayKey={"customerId"}
+          displayKey={"customerid"}
           displayValue={"name"}
         />
         <DatePicker

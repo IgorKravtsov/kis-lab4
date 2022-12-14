@@ -3,9 +3,9 @@ import { Task1Rows } from "../../interfaces/Task1Rows";
 
 export const useGrid = (): GridColDef<Task1Rows>[] => {
   return [
-    { field: "cutomerId", headerName: "CutomerId", width: 90, align: "right" },
+    { field: "customerid", headerName: "CutomerId", width: 90, align: "right" },
     {
-      field: "reservationDate",
+      field: "reservationdate",
       headerName: "Reservation Date",
       width: 200,
     },

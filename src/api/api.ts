@@ -1,10 +1,16 @@
 import { $api } from "./config";
 
+
+// public int CarId { get; set; }
+// public int CustomerId { get; set; }
+// public DateTime ReservationDate { get; set; }
+// public int PeriodInDays { get; set; }
+
 export interface ReserveCarRequest {
-  mcarId: number;
-  mcustomerId: number;
-  mreservationdate: Date;
-  mperiodindays: number;
+  carId: number;
+  customerId: number;
+  reservationDate: Date;
+  periodInDays: number;
 }
 
 class Api {
@@ -21,7 +27,15 @@ class Api {
   }
 
   async reserveCar(req: ReserveCarRequest) {
-    const { data } = await $api.post("/car/reservecar", req);
+    const { data } = await $api.post("/car/reserve", req);
+    return data;
+  }
+
+  async getFreeCars(date: Date | null) {
+    if(!date) return
+    const { data } = await $api.get("/car/freecars", { params: {
+      date
+    }});
     return data;
   }
 }
