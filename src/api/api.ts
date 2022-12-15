@@ -1,6 +1,5 @@
 import { $api } from "./config";
 
-
 // public int CarId { get; set; }
 // public int CustomerId { get; set; }
 // public DateTime ReservationDate { get; set; }
@@ -32,10 +31,8 @@ class Api {
   }
 
   async getFreeCars(date: Date | null) {
-    if(!date) return
-    const { data } = await $api.get("/car/freecars", { params: {
-      date
-    }});
+    if (!date) return;
+    const { data } = await $api.get("/car/freecars", { params: { date } });
     return data;
   }
 }
