@@ -63,8 +63,26 @@ const Task4: React.FC = () => {
       });
       return;
     }
-    const data = await api.reserveCar({carId, customerId, periodInDays: Number(period ?? 0), reservationDate})
-    console.log(data)
+    try {
+      const data = await api.reserveCar({carId, customerId, periodInDays: Number(period ?? 0), reservationDate})
+      setSnackbarState({ severity: "success",
+      message: "Reservation OK",
+      open: true,})
+    } catch (error) {
+      setSnackbarState({ severity: "error",
+      message: "Something went wrong",
+      open: true,})
+    }
+    // console.log(data)
+    // if(data?.newReservations) {
+    //   setSnackbarState({ severity: "success",
+    //   message: "Reservation OK",
+    //   open: true,})
+    // } else {
+    //   setSnackbarState({ severity: "error",
+    //   message: "Something went wrong",
+    //   open: true,})
+    // }
   };
 
   return (
