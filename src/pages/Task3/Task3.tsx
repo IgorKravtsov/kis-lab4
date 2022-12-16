@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Button,
-  Card,
-  Grid,
-} from "@mui/material";
+import { Button, Card, Grid } from "@mui/material";
 import { DatePicker } from "components/DatePicker/DatePicker";
 import { api } from "api/api";
 import { DataGrid } from "@mui/x-data-grid";
